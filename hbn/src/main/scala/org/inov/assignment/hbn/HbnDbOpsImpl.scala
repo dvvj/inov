@@ -1,5 +1,7 @@
 package org.inov.assignment.hbn
 
+import java.util
+
 import org.hibernate.{Session, SessionFactory}
 import org.inov.assignment.gnl.DataUtils
 import org.inov.assignment.hbn.ent.Customer
@@ -26,16 +28,30 @@ object HbnDbOpsImpl {
   private class OpsImpl(sessFactory:SessionFactory) extends IDbOps {
     override def addNewCustomer(
                                  uid: String,
-                                 name: String
+                                 name: String,
+                                 gender:String
                                ): String = {
       runInTransaction(
         sessFactory,
         { sess =>
           val customer = new Customer(
-            uid, name
+            uid, name, "F"
           )
           sess.save(customer)
           customer.getUid
+        }
+      )
+    }
+
+    import collection.JavaConverters._
+    override def queryByName(name: String): java.util.List[Customer] = {
+      runInTransaction(
+        sessFactory,
+        { sess =>
+          val customers = sess.createQuery("FROM Customer").getResultList.asScala
+            .map(_.asInstanceOf[Customer])
+            .toList.asJava
+          customers
         }
       )
     }

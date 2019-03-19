@@ -1,4 +1,4 @@
-INSERT INTO customers (uid, name)  VALUES ('customer1','John Smith');
-INSERT INTO customers (uid, name)  VALUES ('customer2','Erik Lövquist');
-INSERT INTO customers (uid, name)  VALUES ('customer3','やまた');
-INSERT INTO customers (uid, name)  VALUES ('customer4','张晓东');
+INSERT INTO customers (uid, name, gender)  VALUES ('customer1','John Smith', 'M');
+INSERT INTO customers (uid, name, gender)  VALUES ('customer2','Erik Lövquist', 'M');
+INSERT INTO customers (uid, name, gender)  VALUES ('customer3','やまた', 'M');
+INSERT INTO customers (uid, name, gender)  VALUES ('customer4','张晓', 'F');
