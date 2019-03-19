@@ -22,7 +22,6 @@ public class SvcUtils {
   }
 
   final static String MediaType_TXT_UTF8 = MediaType.TEXT_PLAIN + ";charset=utf-8";
-  final static String MediaType_JSON_UTF8 = MediaType.APPLICATION_JSON + ";charset=utf-8";
 
   public static GlobalCfg getCfg() {
     return SvcContextListener.getCfg();

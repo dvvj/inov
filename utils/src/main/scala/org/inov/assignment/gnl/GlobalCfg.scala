@@ -12,34 +12,13 @@ case class GlobalCfg(
   assetLocalPath:String
 ) {
   import GlobalCfg._
-  def authCustomerURL:String = s"$svcSvr/$AUTH_CUSTOMER"
-  def authProfURL:String = s"$svcSvr/$AUTH_MEDPROF"
+
   def allCustomersURL:String = s"$svcSvr/$ALLCUSTOMERS"
-  def currOrdersURL:String = s"$svcSvr/$CURR_ORDERS"
-  def placeOrderURL:String = s"$svcSvr/$PLACE_ORDER"
-  def payOrderURL:String = s"$svcSvr/$PAY_ORDER"
-  def allProductsURL:String = s"$svcSvr/$ALLPRODUCTS"
-  def imgAssetURL:String = s"$svcSvr/$IMAGE_ASSET"
-  def pricePlanURL:String = s"$svcSvr/$PRICE_PLAN"
-  def rewardPlanURL:String = s"$svcSvr/$REWARD_PLAN"
-  def customersRefedByURL:String = s"$svcSvr/$CUSTOMERS_REFED_BY"
-  def refedCustomerOrdersURL:String = s"$svcSvr/$ORDERS_BY_REFED_CUSTOMERS"
-  def infoDbConnStr:String = s"$infoDbSvr/xgproj?user=dbuser&password=dbpass"
 }
 
 object GlobalCfg {
-  private val AUTH_CUSTOMER = "auth/customerPass"
-  private val AUTH_MEDPROF = "auth/profPass"
-  private val ALLCUSTOMERS = "customer/testAll"
-  private val CURR_ORDERS = "order/currUser"
-  private val PLACE_ORDER = "order/placeOrder"
-  private val PAY_ORDER = "order/payOrder"
-  private val ALLPRODUCTS = "product/all"
-  private val IMAGE_ASSET = "asset/img"
-  private val PRICE_PLAN = "user/pricePlan"
-  private val REWARD_PLAN = "user/rewardPlan"
-  private val CUSTOMERS_REFED_BY = "prof/customers"
-  private val ORDERS_BY_REFED_CUSTOMERS = "order/refedCustomerOrders"
+
+  private val ALLCUSTOMERS = "customer/all"
 
   def fromJson(j:String):GlobalCfg = {
     import org.json4s.jackson.JsonMethods._

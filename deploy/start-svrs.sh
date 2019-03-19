@@ -1,6 +1,6 @@
-cd ./docker-mysql/
-sh ./start.sh /home/devvj/db-backup
-cd ..
+#cd ./docker-mysql/
+#sh ./start.sh /home/devvj/db-backup
+#cd ..
 rm -rf tomcat
 mkdir ./tomcat
 cp ../svc/target/svc.war ./tomcat
