@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+        <scala.version>2.12.8</scala.version>
+        <scala.minor.version>2.12</scala.minor.version>
+        <hibernate.version>5.3.8.Final</hibernate.version>
+    </properties>
+    <groupId>org.inov.assignment</groupId>
+    <artifactId>assignment-root</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>net.alchim31.maven</groupId>
+                    <artifactId>scala-maven-plugin</artifactId>
+                    <version>3.2.2</version>
+                    <configuration>
+                        <scalaVersion>${scala.version}</scalaVersion>
+                        <scalaCompatVersion>${scala.minor.version}</scalaCompatVersion>
+                        <recompileMode>incremental</recompileMode>
+                        <useZincServer>false</useZincServer>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                        <encoding>UTF-8</encoding>
+                        <args>
+                            <!--arg>-unchecked</arg-->
+                            <arg>-deprecation</arg>
+                            <!-- max-classfile-name is needed for building on Linux eCryptFS filesystems -->
+                            <arg>-Xmax-classfile-name</arg>
+                            <arg>130</arg>
+                            <!--arg>-explaintypes</arg-->
+                        </args>
+                        <javacArgs>
+                            <!--javacArg>-Xlint:unchecked</javacArg-->
+                            <javacArg>-Xlint:deprecation</javacArg>
+                        </javacArgs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>scala-compile-first</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>add-source</goal>
+                                <goal>compile</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>scala-test-compile</id>
+                            <phase>process-test-resources</phase>
+                            <goals>
+                                <goal>testCompile</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>default-cli</id>
+                            <goals>
+                                <goal>console</goal>
+                                <goal>script</goal>
+                            </goals>
+                            <configuration>
+                                <fork>false</fork>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_${scala.minor.version}</artifactId>
+                <version>3.0.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.14.3</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.inov.assignment</groupId>
+                <artifactId>utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.inov.assignment</groupId>
+                <artifactId>hbn</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.15</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.10.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json4s</groupId>
+                <artifactId>json4s-jackson_${scala.minor.version}</artifactId>
+                <version>3.6.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalaj</groupId>
+                <artifactId>scalaj-http_${scala.minor.version}</artifactId>
+                <version>2.4.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-c3p0</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>4.0.1</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>utils</module>
+        <module>svc</module>
+        <module>svc-tests</module>
+        <module>hbn</module>
+        <module>hbn-tests</module>
+    </modules>
+</project>
