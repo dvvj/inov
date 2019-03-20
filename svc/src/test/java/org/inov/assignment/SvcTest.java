@@ -14,7 +14,7 @@ public class SvcTest {
       new Customer("customer1", "John Smith", "M"),
       new Customer("customer2", "Erik Lövquist", "M"),
       new Customer("customer31", "やまた", "M"),
-      new Customer("customer32", "やまた", "M"),
+      new Customer("customer33", "やまた", "F"),
       new Customer("customer4", "张晓", "F"),
       new Customer("customer4", "张晓", "M")
     );
