@@ -192,8 +192,6 @@
     <modules>
         <module>utils</module>
         <module>svc</module>
-        <module>svc-tests</module>
         <module>hbn</module>
-        <module>hbn-tests</module>
     </modules>
 </project>

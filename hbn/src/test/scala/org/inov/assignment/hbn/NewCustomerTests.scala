@@ -1,9 +1,7 @@
 package org.inov.assignment.hbn
 
-
 import org.inov.assignment.hbn.ent.Customer
 import org.inov.assignment.hbn.utils.HbnUtils
-
 
 object NewCustomerTests extends App {
 
