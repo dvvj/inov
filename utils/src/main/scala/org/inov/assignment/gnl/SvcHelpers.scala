@@ -3,7 +3,7 @@ package org.inov.assignment.gnl
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
-import scalaj.http.{Http, HttpOptions}
+import scalaj.http.{Http, HttpOptions, HttpResponse}
 
 object SvcHelpers {
 
@@ -14,18 +14,23 @@ object SvcHelpers {
     s"$host/customer/byName/$encodedName"
   }
 
-  def getAllCustomers(host:String):String = {
-    val res = Http(testGetAllUrl(host))
+  private def getStr(url:String):String = {
+    val res = Http(url)
       .option(HttpOptions.allowUnsafeSSL)
       .asString
-    res.body
+    if (res.isSuccess)
+      res.body
+    else
+      throw new RuntimeException("Failed to get response from ")
+
+  }
+
+  def getAllCustomers(host:String):String = {
+    getStr(testGetAllUrl(host))
   }
 
   def customerByName(host:String, name:String):String = {
-    val res = Http(customerByNameUrl(host, name))
-      .option(HttpOptions.allowUnsafeSSL)
-      .asString
-    res.body
+    getStr(customerByNameUrl(host, name))
   }
 
 

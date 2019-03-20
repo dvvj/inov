@@ -1,5 +1,6 @@
 package org.inov.assignment.hbn.utils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -73,6 +74,15 @@ public class HbnUtils {
   public static Customer fromJson(String j) {
     try {
       return mapper.readValue(j, Customer.class);
+    }
+    catch (Exception ex) {
+      throw new RuntimeException("Json reading error", ex);
+    }
+  }
+
+  public static List<Customer> listFromJson(String j) {
+    try {
+      return mapper.readValue(j, new TypeReference<List<Customer>>() { });
     }
     catch (Exception ex) {
       throw new RuntimeException("Json reading error", ex);

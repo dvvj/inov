@@ -27,6 +27,12 @@ public class Customer {
     this.gender = gender;
   }
 
+  @Override
+  public String toString() {
+    return String.format(
+      "[%s(uid=%s,%s)]", name, uid, gender
+    );
+  }
 
   public String getUid() {
     return uid;

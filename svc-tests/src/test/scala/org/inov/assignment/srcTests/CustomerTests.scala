@@ -9,7 +9,8 @@ object CustomerTests extends App {
     List(
       new Customer("customer1", "John Smith", "M"),
       new Customer("customer2", "Erik Lövquist", "M"),
-      new Customer("customer3", "やまた", "M"),
+      new Customer("customer31", "やまた", "M"),
+      new Customer("customer32", "やまた", "M"),
       new Customer("customer4", "张晓", "F"),
       new Customer("customer4", "张晓", "M"),
     )
