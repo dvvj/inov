@@ -1,9 +1,5 @@
 package org.inov.assignment.hbn
-
-import java.util
-
 import org.hibernate.{Session, SessionFactory}
-import org.inov.assignment.gnl.DataUtils
 import org.inov.assignment.hbn.ent.Customer
 import org.inov.assignment.hbn.utils.HbnUtils
 

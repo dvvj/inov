@@ -1,11 +1,9 @@
 package org.inov.assignment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.inov.assignment.gnl.GlobalCfg;
 import org.inov.assignment.hbn.IDbOps;
 
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
 public class SvcUtils {
 
@@ -22,10 +20,6 @@ public class SvcUtils {
   }
 
   final static String MediaType_TXT_UTF8 = MediaType.TEXT_PLAIN + ";charset=utf-8";
-
-  public static GlobalCfg getCfg() {
-    return SvcContextListener.getCfg();
-  }
 
   public static IDbOps getDbOps() {
     return SvcContextListener.getDbOps();
