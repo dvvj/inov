@@ -7,6 +7,9 @@ import org.inov.assignment.hbn.utils.HbnUtils;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -39,9 +42,28 @@ public class CustomerOps {
   @Produces(SvcUtils.MediaType_TXT_UTF8)
   public Response allCustomers() {
     try {
-      logger.info("Running allCustomers ...");
       IDbOps dbOps = SvcUtils.getDbOps();
-      List<Customer> res = dbOps.queryByName("n1");
+      List<Customer> res = dbOps.testGetAll();
+
+      String json = HbnUtils.toJson(res);
+      return Response.ok(json).build();
+    }
+    catch (Exception ex) {
+      logger.warning(ex.getMessage());
+      ex.printStackTrace();
+      throw new RuntimeException("Error getting all customers", ex);
+    }
+  }
+
+  @GET
+  @Path("byName/{name}")
+  @Produces(SvcUtils.MediaType_TXT_UTF8)
+  public Response allCustomers(@PathParam("name") String name) {
+    try {
+      String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8.name());
+      logger.info("Getting customer named: " + decodedName);
+      IDbOps dbOps = SvcUtils.getDbOps();
+      List<Customer> res = dbOps.queryByName(decodedName);
 
       String json = HbnUtils.toJson(res);
       return Response.ok(json).build();
@@ -53,4 +75,5 @@ public class CustomerOps {
     }
 
   }
+
 }

@@ -39,6 +39,20 @@ object HbnDbOpsImpl {
       runInTransaction(
         sessFactory,
         { sess =>
+          val query = sess.createQuery(s"Select c from Customer c where c.name = :name")
+          query.setParameter("name", name)
+          val customers = query.getResultList.asScala
+            .map(_.asInstanceOf[Customer])
+            .toList.asJava
+          customers
+        }
+      )
+    }
+
+    override def testGetAll(): java.util.List[Customer] = {
+      runInTransaction(
+        sessFactory,
+        { sess =>
           val customers = sess.createQuery("FROM Customer").getResultList.asScala
             .map(_.asInstanceOf[Customer])
             .toList.asJava

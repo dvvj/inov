@@ -1,24 +1,23 @@
 package org.inov.assignment.hbn
 
 
+import org.inov.assignment.hbn.ent.Customer
 import org.inov.assignment.hbn.utils.HbnUtils
 
-import scala.concurrent.{Await, Future}
-import scala.util.Random
 
 object NewCustomerTests extends App {
 
   import HbnDbOpsImpl._
 
   testHbnOps.addNewCustomer(
-    "cid1", "name1", "M"
+    new Customer("cid1", "John Smith", "M")
   )
 
   testHbnOps.addNewCustomer(
-    "cid2", "name2", "M"
+    new Customer("cid2", "name2", "M")
   )
 
-  val queryResult = testHbnOps.queryByName("name2")
+  val queryResult = testHbnOps.queryByName("John Smith")
   println(queryResult.size())
 
   HbnUtils.shutdownTest()

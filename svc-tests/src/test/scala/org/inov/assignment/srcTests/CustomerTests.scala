@@ -25,9 +25,12 @@ object CustomerTests extends App {
       println(s"Failed to add customer: ${c.getUid}")
   }
 
-  val resp = SvcHelpers.getAllCustomers(svcEndpoint)
-
+  var resp = SvcHelpers.getAllCustomers(svcEndpoint)
   println(resp)
 
+  resp = SvcHelpers.customerByName(svcEndpoint, "John Smith")
+  println(resp)
+  resp = SvcHelpers.customerByName(svcEndpoint, "やまた")
+  println(resp)
 
 }
