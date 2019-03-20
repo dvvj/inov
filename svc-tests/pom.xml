@@ -20,6 +20,10 @@
           <artifactId>utils</artifactId>
       </dependency>
       <dependency>
+          <groupId>org.inov.assignment</groupId>
+          <artifactId>hbn</artifactId>
+      </dependency>
+      <dependency>
           <groupId>org.testng</groupId>
           <artifactId>testng</artifactId>
       </dependency>

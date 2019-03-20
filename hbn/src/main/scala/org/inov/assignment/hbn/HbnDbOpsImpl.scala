@@ -23,16 +23,11 @@ object HbnDbOpsImpl {
 
   private class OpsImpl(sessFactory:SessionFactory) extends IDbOps {
     override def addNewCustomer(
-                                 uid: String,
-                                 name: String,
-                                 gender:String
+                                 customer:Customer
                                ): String = {
       runInTransaction(
         sessFactory,
         { sess =>
-          val customer = new Customer(
-            uid, name, "F"
-          )
           sess.save(customer)
           customer.getUid
         }
