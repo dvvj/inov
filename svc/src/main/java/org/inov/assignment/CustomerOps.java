@@ -27,13 +27,15 @@ public class CustomerOps {
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      throw new RuntimeException("Error adding customer!", ex);
+//      throw new RuntimeException("Error adding customer!", ex);
+      return Response.status(Response.Status.BAD_REQUEST).entity(
+        String.format("Customer (json: %s) not added, error: %s", customerJson, ex.getMessage())
+      ).build();
     }
-
   }
 
   @GET
-  @Path("all")
+  @Path("testGetAll")
   @Produces(SvcUtils.MediaType_TXT_UTF8)
   public Response allCustomers() {
     try {

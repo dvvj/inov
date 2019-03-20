@@ -14,12 +14,18 @@ object CustomerTests extends App {
       new Customer("customer4", "张晓", "M"),
     )
 
+  val svcEndpoint = "https://localhost:8443/webapi"
+
   customers.foreach { c =>
     val j = HbnUtils.toJson(c)
-    SvcHelpers.put("https://localhost:8443/webapi/customer/create", j)
+    val success = SvcHelpers.newCustomer(svcEndpoint, j)
+    if (success)
+      println(s"Customer ${c.getUid} added")
+    else
+      println(s"Failed to add customer: ${c.getUid}")
   }
 
-  val resp = SvcHelpers.get("https://localhost:8443/webapi/customer/all")
+  val resp = SvcHelpers.getAllCustomers(svcEndpoint)
 
   println(resp)
 
